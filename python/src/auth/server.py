@@ -1,7 +1,7 @@
-import jwt, datetime, os
+import jwt, datetime
 from flask import Flask, request
 from flask_mysqldb import MySQL
-from .config import settings
+from config import settings
 
 server = Flask(__name__)
 mysql = MySQL(server)
@@ -41,7 +41,17 @@ def validate():
     encoded_jwt = request.headers["Authorization"]
     if not encoded_jwt:
         return "missing credentials", 401
-        
+
+    encoded_jwt = encoded_jwt.split(" ")[1]
+
+    try:
+        decoded = jwt.decode(
+            encoded_jwt, settings.secret_key, settings.algorithm
+        )
+    except:
+        return "not authorized", 403
+
+    return decoded, 200
 
 def createJWT(username, secret, authz):
     return jwt.encode(
