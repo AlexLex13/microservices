@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     database_username: str
     secret_key: str
     algorithm: str
+    auth_svc_address: str
 
     class Config:
         env_file = ".env"

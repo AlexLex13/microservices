@@ -12,6 +12,7 @@ server.config["MYSQL_PASSWORD"] = settings.database_password
 server.config["MYSQL_DB"] = settings.database_name
 server.config["MYSQL_PORT"] = settings.database_port
 
+
 @server.route("/login", methods=["POST"])
 def login():
     auth = request.authorization
@@ -53,18 +54,20 @@ def validate():
 
     return decoded, 200
 
+
 def createJWT(username, secret, authz):
     return jwt.encode(
         {
             "username": username,
             "exp": datetime.datetime.now(tz=datetime.timezone.utc) +
-            datetime.timedelta(days=1),
+                   datetime.timedelta(days=1),
             "iat": datetime.datetime.utcnow(),
             "admin": authz
         },
         secret,
         algorithm=settings.algorithm,
     )
+
 
 if __name__ == "__main__":
     server.run(host="0.0.0.0", port=5000)

@@ -1,4 +1,5 @@
 import requests
+from config import settings
 
 def token(request):
     if not "Authorization" in requests.headers:
@@ -10,6 +11,11 @@ def token(request):
         return None, ("missing credentials", 401)
 
     response = requests.post(
-        f"http://{settings}/validate",
+        f"http://{settings.auth_svc_address}/validate",
         headers={"Authorization": token}
     )
+
+    if response.status_code == 200:
+        return response.text, None
+    else:
+        return None, (response.text, response.status_code)

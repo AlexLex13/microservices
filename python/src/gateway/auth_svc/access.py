@@ -1,4 +1,5 @@
 import requests
+from config import settings
 
 def login(request):
     auth = request.authorization
@@ -8,7 +9,7 @@ def login(request):
     basicAuth = (auth.username, auth.password)
 
     response = requests.post(
-        f"http://{settings}/login",
+        f"http://{settings.auth_svc_address}/login",
         auth=basicAuth
     )
 
