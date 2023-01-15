@@ -2,7 +2,6 @@ import datetime
 import jwt
 from flask import Flask, request
 from flask_mysqldb import MySQL
-
 from config import settings
 
 server = Flask(__name__)
@@ -23,7 +22,7 @@ def login():
 
     cur = mysql.connection.cursor()
     res = cur.execute(
-        "SELECT email, password FROM user WHERE enmail=%s", (auth.username,)
+        "SELECT email, password FROM user WHERE email=%s", (auth.username,)
     )
 
     if res:
