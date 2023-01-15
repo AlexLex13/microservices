@@ -1,5 +1,6 @@
 import requests
-from python.config import settings
+from config import settings
+
 
 def token(request):
     if not "Authorization" in requests.headers:
