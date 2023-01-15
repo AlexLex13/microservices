@@ -1,7 +1,7 @@
 import jwt, datetime
 from flask import Flask, request
 from flask_mysqldb import MySQL
-from config import settings
+from python.config import settings
 
 server = Flask(__name__)
 mysql = MySQL(server)

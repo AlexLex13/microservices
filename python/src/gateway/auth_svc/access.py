@@ -1,5 +1,5 @@
 import requests
-from config import settings
+from python.config import settings
 
 def login(request):
     auth = request.authorization
