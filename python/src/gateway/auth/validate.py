@@ -1,5 +1,5 @@
 import requests
-from config import settings
+import os
 
 
 def token(request):
@@ -12,7 +12,7 @@ def token(request):
         return None, ("missing credentials", 401)
 
     response = requests.post(
-        f"http://{settings.auth_svc_address}/validate",
+        f"http://{os.environ.get('AUTH_SVC_ADDRESS')}/validate",
         headers={"Authorization": token}
     )
 
