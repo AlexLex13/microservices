@@ -3,9 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: rabbitmq-pvc
 spec:
-  resources:
-    requests:
-      storage: 16i
-  storageClassName: standard
   accessModes:
     - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: standard

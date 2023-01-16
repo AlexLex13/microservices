@@ -6,7 +6,7 @@ metadata:
     name: rabbitmq-ingress
 spec:
   rules:
-  - host: localhost
+  - host: rabbitmq-manager.com
     http:
       paths:
       - pathType: Prefix

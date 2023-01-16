@@ -10,7 +10,7 @@ metadata:
     name: gateway-ingress
 spec:
   rules:
-  - host: localhost
+  - host: mp3converter.com
     http:
       paths:
       - pathType: Prefix
