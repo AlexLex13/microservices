@@ -19,7 +19,7 @@ def upload(f, fs, channel, access):
             routing_key="video",
             body=json.dumps(message),
             properties=pika.BasicProperties(
-                delivery_mode=pika.spec.PERSISTENT_DELOVERY_MODE
+                delivery_mode=pika.spec.PERSISTENT_DELIVERY_MODE
             ),
         )
     except:
