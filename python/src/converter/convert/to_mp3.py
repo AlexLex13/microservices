@@ -29,7 +29,7 @@ def start(message, fs_videos, fs_mp3s, channel):
     try:
         channel.basic_publish(
             exchange="",
-            routing_key=os, #   MP3_QUEUE
+            routing_key=os.environ.get("MP3_QUEUE"), 
             body=json.dumps(message),
             properties=pika.BasicProperties(
                 delivery_mode=pika.spec.PERSISTENT_DELIVERY_MODE
@@ -38,4 +38,3 @@ def start(message, fs_videos, fs_mp3s, channel):
     except Exception as err:
         fs_mp3s.delete(fid)
         return "failed to publish message"
-        

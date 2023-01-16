@@ -25,7 +25,7 @@ def main():
             ch.basic_ack(delivery_tag=method.delivery_tag)
 
     channel.basic_consume(
-        queue=os, on_message_callback=callback
+        queue=os.environ.get("VIDEO_QUEUE"), on_message_callback=callback
     )
 
     print("Waiting for messages. To exit press Ctrl+c")
@@ -42,4 +42,3 @@ if __name__ == "__main__":
             sys.exit(0)
         except SystemExit:
             os._exit(0)
-            
